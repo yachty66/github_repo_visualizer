@@ -1,0 +1,281 @@
+Open-Sora-Plan
+├── .git
+├── .github
+├── .gitignore
+├── LICENSE
+├── README.md
+├── docker
+│   ├── LICENSE
+│   ├── README.md
+│   ├── build_docker.png
+│   ├── docker_build.sh
+│   ├── docker_run.sh
+│   ├── dockerfile.base
+│   ├── packages.txt
+│   ├── ports.txt
+│   ├── postinstallscript.sh
+│   ├── requirements.txt
+│   ├── run_docker.png
+│   └── setup_env.sh
+├── docs
+│   ├── Contribution_Guidelines.md
+│   ├── I2V.md
+│   ├── Report-v1.0.0-cn.md
+│   ├── Report-v1.0.0.md
+│   ├── Report-v1.1.0.md
+│   ├── Report-v1.2.0.md
+│   ├── Report-v1.3.0.md
+│   ├── T2V.md
+│   └── VAE.md
+├── examples
+│   ├── cond_pix_path.txt
+│   ├── cond_prompt.txt
+│   ├── rec_image.py
+│   ├── rec_video.py
+│   └── sora.txt
+├── opensora
+│   ├── __init__.py
+│   ├── acceleration
+│   │   ├── __init__.py
+│   │   ├── communications.py
+│   │   └── parallel_states.py
+│   ├── adaptor
+│   │   ├── __init__.py
+│   │   ├── bf16_optimizer.py
+│   │   ├── engine.py
+│   │   ├── modules.py
+│   │   ├── stage_1_and_2.py
+│   │   ├── utils.py
+│   │   └── zp_manager.py
+│   ├── dataset
+│   │   ├── __init__.py
+│   │   ├── inpaint_dataset.py
+│   │   ├── t2v_datasets.py
+│   │   ├── transform.py
+│   │   └── virtual_disk.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── causalvideovae
+│   │   │   ├── __init__.py
+│   │   │   ├── dataset
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── ddp_sampler.py
+│   │   │   │   ├── transform.py
+│   │   │   │   └── video_dataset.py
+│   │   │   ├── eval
+│   │   │   │   ├── cal_fvd.py
+│   │   │   │   ├── cal_lpips.py
+│   │   │   │   ├── cal_psnr.py
+│   │   │   │   ├── cal_ssim.py
+│   │   │   │   ├── eval.py
+│   │   │   │   ├── fvd
+│   │   │   │   │   ├── styleganv
+│   │   │   │   │   │   └── fvd.py
+│   │   │   │   │   └── videogpt
+│   │   │   │   │       ├── fvd.py
+│   │   │   │   │       └── pytorch_i3d.py
+│   │   │   │   └── script
+│   │   │   │       ├── cal_clip_score.sh
+│   │   │   │       ├── cal_fvd.sh
+│   │   │   │       ├── cal_lpips.sh
+│   │   │   │       ├── cal_psnr.sh
+│   │   │   │       └── cal_ssim.sh
+│   │   │   ├── model
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── configuration_videobase.py
+│   │   │   │   ├── dataset_videobase.py
+│   │   │   │   ├── ema_model.py
+│   │   │   │   ├── losses
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── discriminator.py
+│   │   │   │   │   ├── lpips.py
+│   │   │   │   │   └── perceptual_loss.py
+│   │   │   │   ├── modeling_videobase.py
+│   │   │   │   ├── modules
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── attention.py
+│   │   │   │   │   ├── block.py
+│   │   │   │   │   ├── conv.py
+│   │   │   │   │   ├── normalize.py
+│   │   │   │   │   ├── ops.py
+│   │   │   │   │   ├── quant.py
+│   │   │   │   │   ├── resnet_block.py
+│   │   │   │   │   ├── updownsample.py
+│   │   │   │   │   └── wavelet.py
+│   │   │   │   ├── registry.py
+│   │   │   │   ├── trainer_videobase.py
+│   │   │   │   ├── utils
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── distrib_utils.py
+│   │   │   │   │   ├── module_utils.py
+│   │   │   │   │   ├── scheduler_utils.py
+│   │   │   │   │   ├── video_utils.py
+│   │   │   │   │   └── wavelet_utils.py
+│   │   │   │   └── vae
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── modeling_causalvae.py
+│   │   │   │       └── modeling_wfvae.py
+│   │   │   ├── sample
+│   │   │   │   └── rec_video_vae.py
+│   │   │   └── utils
+│   │   │       ├── __init__.py
+│   │   │       ├── dataset_utils.py
+│   │   │       ├── downloader.py
+│   │   │       └── video_utils.py
+│   │   ├── diffusion
+│   │   │   ├── __init__.py
+│   │   │   ├── common.py
+│   │   │   ├── curope
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── curope.cpp
+│   │   │   │   ├── curope3d.py
+│   │   │   │   ├── kernels.cu
+│   │   │   │   └── setup.py
+│   │   │   └── opensora_v1_3
+│   │   │       ├── __init__.py
+│   │   │       ├── modeling_inpaint.py
+│   │   │       ├── modeling_opensora.py
+│   │   │       └── modules.py
+│   │   ├── frame_interpolation
+│   │   │   ├── cfgs
+│   │   │   │   └── AMT-G.yaml
+│   │   │   ├── interpolation.py
+│   │   │   ├── networks
+│   │   │   │   ├── AMT-G.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── blocks
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── feat_enc.py
+│   │   │   │       ├── ifrnet.py
+│   │   │   │       ├── multi_flow.py
+│   │   │   │       └── raft.py
+│   │   │   ├── readme.md
+│   │   │   └── utils
+│   │   │       ├── __init__.py
+│   │   │       ├── build_utils.py
+│   │   │       ├── dist_utils.py
+│   │   │       ├── flow_utils.py
+│   │   │       └── utils.py
+│   │   ├── super_resolution
+│   │   │   ├── README.md
+│   │   │   ├── basicsr
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── archs
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── arch_util.py
+│   │   │   │   │   ├── rgt_arch.py
+│   │   │   │   │   └── vgg_arch.py
+│   │   │   │   ├── data
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── data_sampler.py
+│   │   │   │   │   ├── data_util.py
+│   │   │   │   │   ├── paired_image_dataset.py
+│   │   │   │   │   ├── prefetch_dataloader.py
+│   │   │   │   │   ├── single_image_dataset.py
+│   │   │   │   │   └── transforms.py
+│   │   │   │   ├── losses
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── loss_util.py
+│   │   │   │   │   └── losses.py
+│   │   │   │   ├── metrics
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── metric_util.py
+│   │   │   │   │   └── psnr_ssim.py
+│   │   │   │   ├── models
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── base_model.py
+│   │   │   │   │   ├── lr_scheduler.py
+│   │   │   │   │   ├── rgt_model.py
+│   │   │   │   │   └── sr_model.py
+│   │   │   │   ├── test_img.py
+│   │   │   │   └── utils
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── dist_util.py
+│   │   │   │       ├── file_client.py
+│   │   │   │       ├── img_util.py
+│   │   │   │       ├── logger.py
+│   │   │   │       ├── matlab_functions.py
+│   │   │   │       ├── misc.py
+│   │   │   │       ├── options.py
+│   │   │   │       └── registry.py
+│   │   │   ├── options
+│   │   │   │   └── test
+│   │   │   │       ├── test_RGT_x2.yml
+│   │   │   │       ├── test_RGT_x4.yml
+│   │   │   │       └── test_single_config.yml
+│   │   │   └── run.py
+│   │   └── text_encoder
+│   │       ├── __init__.py
+│   │       ├── clip.py
+│   │       └── t5.py
+│   ├── npu_config.py
+│   ├── sample
+│   │   ├── caption_refiner.py
+│   │   ├── pipeline_inpaint.py
+│   │   ├── pipeline_opensora.py
+│   │   ├── rec_image.py
+│   │   ├── rec_video.py
+│   │   └── sample.py
+│   ├── serve
+│   │   ├── gradio_utils.py
+│   │   ├── gradio_web_server.py
+│   │   ├── gradio_web_server_i2v.py
+│   │   └── style.css
+│   ├── train
+│   │   ├── train_causalvae.py
+│   │   ├── train_inpaint.py
+│   │   └── train_t2v_diffusers.py
+│   └── utils
+│       ├── communications.py
+│       ├── dataset_utils.py
+│       ├── downloader.py
+│       ├── ema.py
+│       ├── ema_utils.py
+│       ├── freeinit_utils.py
+│       ├── lora_utils.py
+│       ├── mask_utils.py
+│       ├── parallel_states.py
+│       ├── sample_utils.py
+│       ├── taming_download.py
+│       └── utils.py
+├── pyproject.toml
+└── scripts
+    ├── accelerate_configs
+    │   ├── ddp_config.yaml
+    │   ├── deepspeed_zero2_config.yaml
+    │   ├── deepspeed_zero2_offload_config.yaml
+    │   ├── deepspeed_zero3_config.yaml
+    │   ├── deepspeed_zero3_offload_config.yaml
+    │   ├── default_config.yaml
+    │   ├── hostfile
+    │   ├── multi_node_example.yaml
+    │   ├── multi_node_example_by_ddp.yaml
+    │   ├── zero2.json
+    │   ├── zero2_npu.json
+    │   ├── zero2_offload.json
+    │   ├── zero3.json
+    │   └── zero3_offload.json
+    ├── causalvae
+    │   ├── eval.sh
+    │   ├── prepare_eval.sh
+    │   ├── rec_image.sh
+    │   ├── rec_video.sh
+    │   ├── train.sh
+    │   └── wfvae_4dim.json
+    ├── slurm
+    │   └── placeholder
+    ├── text_condition
+    │   ├── gpu
+    │   │   ├── sample_inpaint_v1_3.sh
+    │   │   ├── sample_t2v_v1_3.sh
+    │   │   ├── train_inpaint_v1_3.sh
+    │   │   └── train_t2v_v1_3.sh
+    │   └── npu
+    │       ├── sample_inpaint_v1_3.sh
+    │       ├── sample_t2v_v1_3.sh
+    │       ├── train_inpaint_v1_3.sh
+    │       └── train_t2v_v1_3.sh
+    ├── train_configs
+    │   └── mask_config.yaml
+    └── train_data
+        └── merge_data.txt
